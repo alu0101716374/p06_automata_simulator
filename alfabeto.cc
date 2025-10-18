@@ -20,7 +20,12 @@
 #include "tools.h"
 #include <iostream>
 
-// constructor desde cadena
+/**
+ * @brief Class constructor form a string
+ *
+ * @param cadena string input to build the alphabet
+ * @return void
+ */
 Alfabeto::Alfabeto(const Cadena& cadena) {
   for (char character : cadena.GetCadena()) {
     Simbolo simbolo{character};
@@ -28,19 +33,42 @@ Alfabeto::Alfabeto(const Cadena& cadena) {
   }
 }
 
+/**
+ * @brief inserts a symbol into the alphabet set
+ *
+ * @param simbolo the symbol you want to insert
+ * @return void
+ */
 void Alfabeto::Insert(const Simbolo& simbolo) {
+  // alphabets cannot contain the empty string &
   if (simbolo == '&') ErrorFour();
   alfabeto_.insert(simbolo);
 }
 
-
+/**
+ * @brief Checks whether the alphabet contains a certain symbol
+ *
+ * @param simbolo The symbol to be searched for in the alphabet
+ * @return True or False depending on if it is found
+ */
 bool Alfabeto::Contains(const Simbolo& simbolo) const {
   return (alfabeto_.find(simbolo) != alfabeto_.end());
 }
 
-// constructor por defecto
+/**
+ * @brief default constructor, makes an empty alphabet
+ *
+ * @return void
+ */
 Alfabeto::Alfabeto() {};
 
+/**
+ * @brief output stream operator overload, prints the alphabet in the format {<symbol1>, <symbol2>, ...}
+ *
+ * @param os outstream that will be returned
+ * @param alfabeto alphabet to be printed
+ * @return out stream 
+ */
 std::ostream& operator<<(std::ostream& os, const Alfabeto& alfabeto) {
   bool first{true};
   for (Simbolo simbolo : alfabeto.alfabeto_) {
@@ -55,6 +83,13 @@ std::ostream& operator<<(std::ostream& os, const Alfabeto& alfabeto) {
   return os;
 }
 
+/**
+ * @brief the instream operator overload, to be able to instantly create the alphabet form a line etc
+ *
+ * @param is input stream
+ * @param alfabeto alphabet to be created
+ * @return input stream
+ */
 std::istream& operator>>(std::istream& is, Alfabeto& alfabeto) {
   Cadena temp_cadena;
   if (is >> temp_cadena) {

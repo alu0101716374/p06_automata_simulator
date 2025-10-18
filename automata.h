@@ -28,6 +28,10 @@ class Automata {
     // Constructor usando un fichero de entrada
     Automata(const std::string& input_file_name);
 
+    const Estado& GetState(const int identifier) const;
+
+    void CheckFileStrings(const std::string& inp_file_name) const;
+    bool AcceptString(const Cadena& cadena) const;
     friend std::ostream& operator<<(std::ostream& out_stream, const Automata& automata);
   private:
     Alfabeto alfabeto_;
@@ -38,6 +42,7 @@ class Automata {
 
     void ValidStates() const;
     bool StateExists(const int identifier) const;
+    bool RecursiveSearch(const int state_id, int position, const Cadena& cadena) const;
 };
 
 #endif

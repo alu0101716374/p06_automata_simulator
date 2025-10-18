@@ -25,12 +25,14 @@
 class Estado {
  public:
   Estado(const std::string& line);
+  Estado();
   std::multimap<Simbolo, int> GetTransitions() const;
   int GetIdentifier() const;
   bool operator<(const Estado& other) const ;
+  bool IsAccepted() const;
 
   friend std::ostream& operator<<(std::ostream& os, const Estado& state);
-
+  void operator=(const Estado& other);
  private:
   int identifier_;
   bool accepted_;

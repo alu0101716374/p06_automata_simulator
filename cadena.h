@@ -47,7 +47,9 @@ public:
     friend std::ostream& operator<<(std::ostream& os, const Cadena& cadena); 
     friend std::istream& operator>>(std::istream& is, Cadena& cadena);
     void operator=(const Cadena& other);
+    bool operator==(const Cadena& other) const;
     bool operator<(const Cadena& other) const; 
+    Simbolo operator[](const int position) const;
 
 private:
     std::string cadena_{""};

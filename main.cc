@@ -18,6 +18,11 @@
 #include "tools.h"
 #include "automata.h"
 
+/**
+ * @brief Checks command line arguments, creates the automaton, ad¡nd checks strings
+ *
+ * @return 0 = no errors
+ */
 int main(int argc, char* argv []) {
   if (argc == 1) {
     Usage();
@@ -26,7 +31,7 @@ int main(int argc, char* argv []) {
   } else {
     const std::string automata_file_name{argv[1]}, test_file_name{argv[2]};
     Automata automata(automata_file_name);
-    std::cout << automata;
+    automata.CheckFileStrings(test_file_name);
     return 0;
   }
 }
